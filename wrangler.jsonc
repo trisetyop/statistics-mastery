@@ -4,7 +4,7 @@
  */
  {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "statquest-cvztaqj_1vardjaptad6f",
+	"name": "statistika",
 	"main": "worker/index.ts",
 	"compatibility_date": "2025-04-24",
 	"assets": {
