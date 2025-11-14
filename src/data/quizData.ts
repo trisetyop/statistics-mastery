@@ -215,7 +215,7 @@ const questionsPart5 = [
   {
     id: 'q35',
     question: 'Simpangan baku dari distribusi sampling rata-rata (x̄) disebut...',
-    options: ['Simpangan Baku Populasi (σ)', 'Varians Sampel (s��)', 'Kesalahan Standar (Standard Error, SE)', 'Jangkauan (Range)'],
+    options: ['Simpangan Baku Populasi (σ)', 'Varians Sampel (s²)', 'Kesalahan Standar (Standard Error, SE)', 'Jangkauan (Range)'],
     correctAnswer: 2,
   },
   {
@@ -377,6 +377,192 @@ const questionsPart9 = [
     correctAnswer: 2,
   },
 ];
+const questionsPart10 = [
+  {
+    id: 'q61',
+    question: 'Sebuah uji klinis obat baru menemukan p-value 0.03 saat membandingkan efektivitasnya dengan plasebo. Interpretasi yang paling tepat adalah...',
+    options: ['Obat tersebut 97% efektif', 'Ada kemungkinan 3% bahwa obat tersebut tidak efektif', 'Jika H0 (tidak ada efek) benar, ada 3% kemungkinan mengamati hasil seekstrem ini karena kebetulan', 'Ada 3% kesalahan dalam penelitian'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q62',
+    question: 'Selang kepercayaan 95% untuk rata-rata penurunan tekanan darah oleh obat X adalah [8, 12] mmHg. Ini berarti...',
+    options: ['95% pasien akan mengalami penurunan antara 8 dan 12 mmHg', 'Kita 95% yakin bahwa rata-rata penurunan tekanan darah sebenarnya di populasi berada antara 8 dan 12 mmHg', 'Peluang rata-rata penurunan tekanan darah adalah 95%', 'Obat ini tidak efektif untuk 5% populasi'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q63',
+    question: 'Dalam konteks tes diagnostik penyakit, Kesalahan Tipe I (menolak H0 yang benar) berarti...',
+    options: ['Mendiagnosis orang sehat sebagai sakit (positif palsu)', 'Mendiagnosis orang sakit sebagai sehat (negatif palsu)', 'Hasil tes tidak meyakinkan', 'Tes tersebut tidak valid'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q64',
+    question: 'Dalam konteks tes diagnostik penyakit, Kesalahan Tipe II (gagal menolak H0 yang salah) berarti...',
+    options: ['Mendiagnosis orang sehat sebagai sakit (positif palsu)', 'Mendiagnosis orang sakit sebagai sehat (negatif palsu)', 'Hasil tes terlalu sensitif', 'Tes tersebut tidak spesifik'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q65',
+    question: 'Seorang peneliti ingin membandingkan efektivitas tiga jenis diet (A, B, C) terhadap penurunan berat badan. Metode statistik yang paling sesuai adalah...',
+    options: ['Uji t dua sampel', 'Analisis Varians (ANOVA)', 'Uji Chi-Square', 'Regresi Linear'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q66',
+    question: 'Perbedaan mendasar antara studi observasional dan studi eksperimental (uji klinis acak terkontrol) adalah...',
+    options: ['Studi observasional lebih murah', 'Studi eksperimental dapat membuktikan hubungan sebab-akibat', 'Studi observasional menggunakan sampel yang lebih besar', 'Studi eksperimental tidak memiliki kelompok kontrol'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q67',
+    question: 'Dalam merancang uji klinis, meningkatkan ukuran sampel (n) akan...',
+    options: ['Meningkatkan kemungkinan Kesalahan Tipe I', 'Menurunkan power statistik dari uji', 'Mempersempit selang kepercayaan dan meningkatkan power', 'Menghilangkan kebutuhan akan kelompok plasebo'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q68',
+    question: 'Odds Ratio (OR) sebesar 2.5 dalam sebuah studi kasus-kontrol berarti...',
+    options: ['Risiko penyakit 2.5 kali lebih tinggi pada kelompok terpapar', 'Peluang (odds) terpapar 2.5 kali lebih tinggi pada kelompok kasus dibandingkan kelompok kontrol', 'Penyakit tersebut 2.5 kali lebih parah', '250% dari kelompok terpapar akan sakit'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q69',
+    question: 'Analisis survival sering digunakan dalam penelitian medis untuk...',
+    options: ['Menganalisis kualitas hidup pasien', 'Membandingkan biaya pengobatan', 'Menganalisis data waktu-hingga-kejadian (misal: waktu hingga kematian atau kambuh)', 'Menguji prevalensi penyakit'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q70',
+    question: 'Nilai p-value yang sangat kecil (misal, p < 0.001) tidak selalu berarti...',
+    options: ['Hasilnya signifikan secara statistik', 'H0 harus ditolak', 'Efek yang diamati besar atau penting secara klinis', 'Hasilnya tidak mungkin terjadi karena kebetulan'],
+    correctAnswer: 2,
+  },
+];
+const questionsPart11 = [
+  {
+    id: 'q71',
+    question: 'Sebuah perusahaan e-commerce melakukan A/B testing pada dua desain tombol "Beli Sekarang" (desain A dan B). Desain B menghasilkan tingkat konversi 5% lebih tinggi dengan p-value 0.04. Keputusan terbaik adalah...',
+    options: ['Tetap menggunakan desain A karena perbedaannya kecil', 'Menerapkan desain B karena hasilnya signifikan secara statistik', 'Menjalankan tes lagi dengan sampel lebih besar', 'Menggunakan kedua desain secara acak'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q72',
+    question: 'Sebuah model regresi untuk memprediksi penjualan bulanan (Y) berdasarkan biaya iklan (X) menghasilkan persamaan Y = 5000 + 2.5X. Ini berarti...',
+    options: ['Jika tidak ada iklan, penjualan adalah 2.5 unit', 'Setiap kenaikan $1 biaya iklan diprediksi meningkatkan penjualan sebesar $2.5', 'Model ini 2.5% akurat', 'Penjualan maksimum adalah 5000 unit'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q73',
+    question: 'Koefisien Determinasi (R²) dari model prediksi penjualan adalah 0.65. Ini berarti...',
+    options: ['Model tersebut 65% akurat', '65% dari variasi penjualan dapat dijelaskan oleh variasi biaya iklan', 'Ada 65% korelasi antara penjualan dan iklan', 'Biaya iklan menyebabkan 65% dari penjualan'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q74',
+    question: 'Sebuah survei pasar menemukan bahwa pangsa pasar produk kita adalah 20% dengan margin of error ±3% pada tingkat kepercayaan 95%. Ini berarti...',
+    options: ['Pangsa pasar kita pasti antara 17% dan 23%', 'Kita 95% yakin bahwa pangsa pasar sebenarnya di populasi berada antara 17% dan 23%', 'Ada 95% kemungkinan pangsa pasar kita adalah 20%', 'Pangsa pasar akan naik 3%'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q75',
+    question: 'Analisis sentimen pada ulasan pelanggan menghasilkan skor rata-rata 4.2 dari 5. Untuk menentukan apakah ini secara signifikan lebih tinggi dari rata-rata industri 4.0, uji yang sesuai adalah...',
+    options: ['Uji t satu sampel', 'ANOVA', 'Uji Chi-Square', 'Analisis Korelasi'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q76',
+    question: 'Sebuah perusahaan ingin mengetahui apakah ada hubungan antara kategori produk (Elektronik, Pakaian, Buku) dan metode pembayaran (Kartu Kredit, Transfer, E-wallet). Uji statistik yang tepat adalah...',
+    options: ['Uji t', 'ANOVA', 'Uji Chi-Square untuk independensi', 'Regresi Logistik'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q77',
+    question: 'Dalam analisis deret waktu penjualan, komponen "musiman" (seasonality) mengacu pada...',
+    options: ['Tren penjualan jangka panjang', 'Fluktuasi acak dari hari ke hari', 'Pola berulang yang terjadi pada interval tetap (misal, kuartalan, tahunan)', 'Dampak peristiwa tak terduga pada penjualan'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q78',
+    question: 'Customer Lifetime Value (CLV) sering dimodelkan menggunakan distribusi peluang karena...',
+    options: ['Semua pelanggan memiliki nilai yang sama', 'Perilaku pembelian di masa depan mengandung ketidakpastian', 'Hanya pelanggan baru yang dihitung', 'CLV selalu berdistribusi normal'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q79',
+    question: 'Sebuah bank menggunakan model regresi logistik untuk memprediksi kemungkinan nasabah gagal bayar pinjaman. Variabel dependen dalam model ini adalah...',
+    options: ['Jumlah pinjaman', 'Tingkat suku bunga', 'Variabel biner (gagal bayar/tidak gagal bayar)', 'Skor kredit nasabah'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q80',
+    question: 'Menemukan korelasi yang kuat antara penjualan es krim dan jumlah serangan hiu adalah contoh klasik dari...',
+    options: ['Hubungan sebab-akibat langsung', 'Korelasi palsu (spurious correlation) karena variabel ketiga (musim panas)', 'Kesalahan pengambilan sampel', 'Regresi non-linear'],
+    correctAnswer: 1,
+  },
+];
+const questionsPart12 = [
+  {
+    id: 'q81',
+    question: 'Dalam machine learning, masalah "overfitting" terjadi ketika...',
+    options: ['Model terlalu sederhana dan gagal menangkap pola data', 'Model terlalu kompleks dan menghafal data training, sehingga berkinerja buruk pada data baru', 'Data training tidak cukup besar', 'Akurasi model pada data training dan data tes sama-sama rendah'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q82',
+    question: 'Metode validasi silang (cross-validation) digunakan untuk...',
+    options: ['Mempercepat training model', 'Mendapatkan estimasi yang lebih andal tentang kinerja model pada data yang belum pernah dilihat', 'Menyederhanakan arsitektur model', 'Memilih fitur yang paling penting secara otomatis'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q83',
+    question: 'Metrik "presisi" (precision) dalam klasifikasi biner mengukur...',
+    options: ['Dari semua kasus positif aktual, berapa banyak yang berhasil diidentifikasi dengan benar', 'Dari semua prediksi positif, berapa banyak yang benar-benar positif', 'Proporsi total prediksi yang benar', 'Kemampuan model untuk menghindari negatif palsu'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q84',
+    question: 'Metrik "recall" atau "sensitivitas" (sensitivity) dalam klasifikasi biner mengukur...',
+    options: ['Dari semua kasus positif aktual, berapa banyak yang berhasil diidentifikasi dengan benar', 'Dari semua prediksi positif, berapa banyak yang benar-benar positif', 'Akurasi keseluruhan model', 'Kemampuan model untuk menghindari positif palsu'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q85',
+    question: 'Seorang data scientist membangun model untuk mendeteksi penipuan kartu kredit. Metrik evaluasi yang paling penting adalah...',
+    options: ['Akurasi (Accuracy)', 'Presisi (Precision)', 'Recall (Sensitivity)', 'Spesifisitas (Specificity)'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q86',
+    question: 'Analisis Komponen Utama (PCA) adalah teknik yang digunakan untuk...',
+    options: ['Klasifikasi data', 'Memprediksi nilai kontinu', 'Mengurangi dimensi data (dimensionality reduction) dengan tetap mempertahankan sebagian besar varians', 'Mengelompokkan data (clustering)'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q87',
+    question: 'Perbedaan utama antara supervised learning dan unsupervised learning adalah...',
+    options: ['Supervised learning menggunakan data berlabel, unsupervised learning tidak', 'Supervised learning lebih kompleks', 'Unsupervised learning hanya untuk data kategorikal', 'Unsupervised learning tidak memerlukan data'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q88',
+    question: 'Algoritma K-Means adalah contoh dari...',
+    options: ['Regresi', 'Klasifikasi', 'Clustering (Unsupervised Learning)', 'Reinforcement Learning'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q89',
+    question: 'P-value dalam uji hipotesis fitur pada model regresi digunakan untuk...',
+    options: ['Menentukan apakah koefisien fitur secara statistik signifikan berbeda dari nol', 'Mengukur kekuatan prediksi fitur', 'Memeriksa normalitas residual', 'Menghitung R-squared'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q90',
+    question: 'Jika dua variabel independen dalam model regresi sangat berkorelasi (multikolinearitas), hal ini dapat menyebabkan...',
+    options: ['Nilai R-squared yang sangat rendah', 'Estimasi koefisien yang tidak stabil dan sulit diinterpretasikan', 'Model menjadi overfitting', 'Residual yang tidak normal'],
+    correctAnswer: 1,
+  },
+];
 export const quizData: QuizTopic[] = [
   {
     id: 'topic-1',
@@ -433,6 +619,27 @@ export const quizData: QuizTopic[] = [
     title: 'Topik Khusus & Aplikasi',
     description: 'Statistika non-parametrik, time series, dan quality control.',
     questions: questionsPart9,
+    isAdvanced: true,
+  },
+  {
+    id: 'topic-10',
+    title: 'Studi Kasus: Uji Klinis & Medis',
+    description: 'Aplikasi statistika dalam penelitian medis dan uji klinis.',
+    questions: questionsPart10,
+    isAdvanced: true,
+  },
+  {
+    id: 'topic-11',
+    title: 'Studi Kasus: Analisis Bisnis & Pasar',
+    description: 'Penerapan konsep statistik dalam A/B testing, prediksi, dan riset pasar.',
+    questions: questionsPart11,
+    isAdvanced: true,
+  },
+  {
+    id: 'topic-12',
+    title: 'Studi Kasus: Sains Data & Machine Learning',
+    description: 'Konsep statistik fundamental dalam validasi model dan interpretasi hasil.',
+    questions: questionsPart12,
     isAdvanced: true,
   },
 ];
