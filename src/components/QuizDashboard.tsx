@@ -10,8 +10,12 @@ import type { QuizTopic } from '@/types';
 import { cn } from '@/lib/utils';
 export function QuizDashboard() {
   const startQuiz = useQuizSessionStore((state) => state.startQuiz);
-  const getTopicMastery = useUserProgressStore((state) => state.getTopicMastery);
-  const totalMasteredCount = useUserProgressStore((state) => state.getTotalMasteredCount());
+  const { getTopicMastery, getTotalMasteredCount, progress } = useUserProgressStore(state => ({
+    getTopicMastery: state.getTopicMastery,
+    getTotalMasteredCount: state.getTotalMasteredCount,
+    progress: state.progress,
+  }));
+  const totalMasteredCount = getTotalMasteredCount();
   const UNLOCK_THRESHOLD = 75;
   const introTopics = quizData.filter(topic => !topic.isAdvanced);
   const introQuestionIds = introTopics.flatMap(topic => topic.questions.map(q => q.id));
@@ -19,7 +23,7 @@ export function QuizDashboard() {
   const isAdvancedLocked = introMastery < UNLOCK_THRESHOLD;
   const totalQuestions = quizData.reduce((acc, topic) => acc + topic.questions.length, 0);
   const handleStartQuiz = (topic: QuizTopic) => {
-    startQuiz(topic.questions);
+    startQuiz(topic.questions, progress);
   };
   return (
     <div className="animate-fade-in space-y-10">

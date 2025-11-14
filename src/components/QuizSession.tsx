@@ -7,12 +7,12 @@ import { useQuizSessionStore } from '@/stores/quizSessionStore';
 import { useUserProgressStore } from '@/stores/userProgressStore';
 import { cn } from '@/lib/utils';
 import { CheckCircle, XCircle } from 'lucide-react';
+import type { AnswerRating } from '@/types';
 export function QuizSession() {
   const questions = useQuizSessionStore((state) => state.questions);
   const currentQuestionIndex = useQuizSessionStore((state) => state.currentQuestionIndex);
   const answerQuestion = useQuizSessionStore((state) => state.answerQuestion);
   const nextQuestion = useQuizSessionStore((state) => state.nextQuestion);
-  const userAnswers = useQuizSessionStore((state) => state.userAnswers);
   const updateQuestionMastery = useUserProgressStore((state) => state.updateQuestionMastery);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -27,7 +27,10 @@ export function QuizSession() {
     setSelectedAnswer(answerIndex);
     setIsAnswered(true);
     answerQuestion(currentQuestion.id, answerIndex);
-    updateQuestionMastery(currentQuestion.id, currentQuestion.correctAnswer === answerIndex);
+  };
+  const handleRatingClick = (rating: AnswerRating) => {
+    updateQuestionMastery(currentQuestion.id, rating);
+    nextQuestion();
   };
   const getOptionClass = (index: number) => {
     if (!isAnswered) {
@@ -46,6 +49,7 @@ export function QuizSession() {
     animate: { opacity: 1, y: 0, scale: 1 },
     exit: { opacity: 0, y: -50, scale: 1.05 },
   };
+  const isCorrect = selectedAnswer !== null && selectedAnswer === currentQuestion.correctAnswer;
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
       <div className="w-full space-y-4 mb-8">
@@ -90,11 +94,24 @@ export function QuizSession() {
                 ))}
               </div>
               {isAnswered && (
-                <div className="mt-6 text-center">
-                  <Button onClick={nextQuestion} size="lg" className="w-full sm:w-auto">
-                    Lanjut
-                  </Button>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-6 text-center"
+                >
+                  {isCorrect ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg">Sulit</Button>
+                      <Button onClick={() => handleRatingClick('medium')} size="lg">Sedang</Button>
+                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg">Mudah</Button>
+                    </div>
+                  ) : (
+                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto">
+                      Ulangi
+                    </Button>
+                  )}
+                </motion.div>
               )}
             </CardContent>
           </Card>
