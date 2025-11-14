@@ -7,12 +7,12 @@ import { useQuizSessionStore } from '@/stores/quizSessionStore';
 import { useUserProgressStore } from '@/stores/userProgressStore';
 import { cn } from '@/lib/utils';
 import { CheckCircle, XCircle } from 'lucide-react';
-import type { AnswerRating } from '@/types';
 export function QuizSession() {
   const questions = useQuizSessionStore((state) => state.questions);
   const currentQuestionIndex = useQuizSessionStore((state) => state.currentQuestionIndex);
   const answerQuestion = useQuizSessionStore((state) => state.answerQuestion);
   const nextQuestion = useQuizSessionStore((state) => state.nextQuestion);
+  const userAnswers = useQuizSessionStore((state) => state.userAnswers);
   const updateQuestionMastery = useUserProgressStore((state) => state.updateQuestionMastery);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -27,12 +27,7 @@ export function QuizSession() {
     setSelectedAnswer(answerIndex);
     setIsAnswered(true);
     answerQuestion(currentQuestion.id, answerIndex);
-  };
-  const isCorrect = selectedAnswer !== null && selectedAnswer === currentQuestion.correctAnswer;
-  const handleRatingClick = (userRating: 'hard' | 'medium' | 'easy') => {
-    const finalRating: AnswerRating = isCorrect ? userRating : 'again';
-    updateQuestionMastery(currentQuestion.id, finalRating);
-    nextQuestion();
+    updateQuestionMastery(currentQuestion.id, currentQuestion.correctAnswer === answerIndex);
   };
   const getOptionClass = (index: number) => {
     if (!isAnswered) {
@@ -44,7 +39,6 @@ export function QuizSession() {
     if (index === selectedAnswer) {
       return 'bg-danger/20 border-danger text-danger-foreground';
     }
-    // For incorrect answers, also highlight the correct one
     return 'border-border';
   };
   const cardVariants = {
@@ -55,7 +49,7 @@ export function QuizSession() {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
       <div className="w-full space-y-4 mb-8">
-        <div className="flex justify-between text-lg font-medium text-muted-foreground">
+        <div className="flex justify-between text-sm font-medium text-muted-foreground">
           <span>Pertanyaan {currentQuestionIndex + 1} dari {questions.length}</span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -71,9 +65,9 @@ export function QuizSession() {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="w-full"
         >
-          <Card className="shadow-pixel">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-3xl leading-relaxed">{currentQuestion.question}</CardTitle>
+              <CardTitle className="text-2xl leading-relaxed">{currentQuestion.question}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
@@ -82,7 +76,7 @@ export function QuizSession() {
                     key={index}
                     variant="outline"
                     className={cn(
-                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative text-xl shadow-pixel',
+                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative',
                       getOptionClass(index)
                     )}
                     onClick={() => handleAnswerClick(index)}
@@ -96,26 +90,11 @@ export function QuizSession() {
                 ))}
               </div>
               {isAnswered && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="mt-6 text-center"
-                >
-                  <div className="mb-4 text-lg">
-                    {isCorrect ? (
-                      <p className="font-bold text-success">Jawaban Benar!</p>
-                    ) : (
-                      <p className="font-bold text-danger">Jawaban Salah.</p>
-                    )}
-                    <p className="text-muted-foreground">Seberapa sulit pertanyaan ini?</p>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg shadow-pixel">Sulit</Button>
-                    <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg shadow-pixel">Sedang</Button>
-                    <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg shadow-pixel">Mudah</Button>
-                  </div>
-                </motion.div>
+                <div className="mt-6 text-center">
+                  <Button onClick={nextQuestion} size="lg" className="w-full sm:w-auto">
+                    Lanjut
+                  </Button>
+                </div>
               )}
             </CardContent>
           </Card>

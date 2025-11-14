@@ -2,13 +2,12 @@ import { Award, Repeat, Home } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useQuizSessionStore } from '@/stores/quizSessionStore';
-import { useUserProgressStore } from '@/stores/userProgressStore';
+import { quizData } from '@/data/quizData';
 export function QuizResult() {
   const score = useQuizSessionStore((state) => state.score);
   const questions = useQuizSessionStore((state) => state.questions);
   const reset = useQuizSessionStore((state) => state.reset);
   const startQuiz = useQuizSessionStore((state) => state.startQuiz);
-  const progress = useUserProgressStore((state) => state.progress);
   const totalQuestions = questions.length;
   const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
   const getFeedback = () => {
@@ -19,9 +18,9 @@ export function QuizResult() {
     return "Jangan menyerah! Coba lagi untuk hasil yang lebih baik.";
   };
   const handleRetry = () => {
-    // Restart the quiz with the same set of questions, passing the current progress
-    // to ensure the SRS logic can still apply if needed in future enhancements.
-    startQuiz(questions, progress);
+    // This is a simplified retry. A more complex app might find the original topic.
+    // For now, we'll just restart with the same set of questions.
+    startQuiz(questions);
   };
   return (
     <div className="flex items-center justify-center animate-scale-in">

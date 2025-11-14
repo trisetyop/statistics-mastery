@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-import type { Question, UserProgress } from '@/types';
-import { useUserProgressStore } from './userProgressStore';
+import type { Question } from '@/types';
 type QuizStatus = 'inactive' | 'active' | 'completed';
 interface QuizSessionState {
   questions: Question[];
@@ -10,7 +9,7 @@ interface QuizSessionState {
   score: number;
   startTime: number | null;
   endTime: number | null;
-  startQuiz: (questions: Question[], progress: UserProgress) => void;
+  startQuiz: (questions: Question[]) => void;
   answerQuestion: (questionId: string, answerIndex: number) => void;
   nextQuestion: () => void;
   endQuiz: () => void;
@@ -25,30 +24,13 @@ const initialState = {
   startTime: null,
   endTime: null,
 };
-// Helper to shuffle an array
-const shuffleArray = <T>(array: T[]): T[] => {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-};
 export const useQuizSessionStore = create<QuizSessionState>((set, get) => ({
   ...initialState,
-  startQuiz: (questions, progress) => {
-    const dueQuestions = questions
-      .filter(q => (progress[q.id] || 0) < 5)
-      .sort((a, b) => (progress[a.id] || 0) - (progress[b.id] || 0));
-    let sessionQuestions: Question[];
-    if (dueQuestions.length > 0) {
-      sessionQuestions = dueQuestions.slice(0, 10);
-    } else {
-      // All mastered, pick 5 random for review
-      sessionQuestions = shuffleArray(questions).slice(0, 5);
-    }
+  startQuiz: (questions) => {
+    // Simple logic: take first 10 questions or all if fewer
+    const sessionQuestions = questions.slice(0, 10);
     set({
-      questions: shuffleArray(sessionQuestions),
+      questions: sessionQuestions,
       currentQuestionIndex: 0,
       userAnswers: {},
       status: 'active',
@@ -78,13 +60,6 @@ export const useQuizSessionStore = create<QuizSessionState>((set, get) => ({
   },
   endQuiz: () => {
     set({ status: 'completed', endTime: Date.now() });
-    // Achievement checks
-    const { score, questions } = get();
-    const { unlockAchievement } = useUserProgressStore.getState();
-    unlockAchievement('FIRST_QUIZ_COMPLETE');
-    if (questions.length > 0 && score === questions.length) {
-      unlockAchievement('PERFECT_SCORE');
-    }
   },
   reset: () => {
     set(initialState);
