@@ -28,8 +28,10 @@ export function QuizSession() {
     setIsAnswered(true);
     answerQuestion(currentQuestion.id, answerIndex);
   };
-  const handleRatingClick = (rating: AnswerRating) => {
-    updateQuestionMastery(currentQuestion.id, rating);
+  const isCorrect = selectedAnswer !== null && selectedAnswer === currentQuestion.correctAnswer;
+  const handleRatingClick = (userRating: 'hard' | 'medium' | 'easy') => {
+    const finalRating: AnswerRating = isCorrect ? userRating : 'again';
+    updateQuestionMastery(currentQuestion.id, finalRating);
     nextQuestion();
   };
   const getOptionClass = (index: number) => {
@@ -42,6 +44,7 @@ export function QuizSession() {
     if (index === selectedAnswer) {
       return 'bg-danger/20 border-danger text-danger-foreground';
     }
+    // For incorrect answers, also highlight the correct one
     return 'border-border';
   };
   const cardVariants = {
@@ -49,7 +52,6 @@ export function QuizSession() {
     animate: { opacity: 1, y: 0, scale: 1 },
     exit: { opacity: 0, y: -50, scale: 1.05 },
   };
-  const isCorrect = selectedAnswer !== null && selectedAnswer === currentQuestion.correctAnswer;
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
       <div className="w-full space-y-4 mb-8">
@@ -100,17 +102,19 @@ export function QuizSession() {
                   transition={{ delay: 0.2 }}
                   className="mt-6 text-center"
                 >
-                  {isCorrect ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg shadow-pixel">Sulit</Button>
-                      <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg shadow-pixel">Sedang</Button>
-                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg shadow-pixel">Mudah</Button>
-                    </div>
-                  ) : (
-                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto text-lg shadow-pixel">
-                      Lanjutkan
-                    </Button>
-                  )}
+                  <div className="mb-4 text-lg">
+                    {isCorrect ? (
+                      <p className="font-bold text-success">Jawaban Benar!</p>
+                    ) : (
+                      <p className="font-bold text-danger">Jawaban Salah.</p>
+                    )}
+                    <p className="text-muted-foreground">Seberapa sulit pertanyaan ini?</p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg shadow-pixel">Sulit</Button>
+                    <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg shadow-pixel">Sedang</Button>
+                    <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg shadow-pixel">Mudah</Button>
+                  </div>
                 </motion.div>
               )}
             </CardContent>
