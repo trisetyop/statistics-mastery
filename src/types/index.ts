@@ -10,6 +10,7 @@ export interface QuizTopic {
   title: string;
   description: string;
   questions: Question[];
+  isAdvanced?: boolean;
 }
 export type UserProgress = {
   [questionId: string]: MasteryLevel;

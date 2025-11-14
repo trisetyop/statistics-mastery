@@ -215,7 +215,7 @@ const questionsPart5 = [
   {
     id: 'q35',
     question: 'Simpangan baku dari distribusi sampling rata-rata (x̄) disebut...',
-    options: ['Simpangan Baku Populasi (σ)', 'Varians Sampel (s²)', 'Kesalahan Standar (Standard Error, SE)', 'Jangkauan (Range)'],
+    options: ['Simpangan Baku Populasi (σ)', 'Varians Sampel (s��)', 'Kesalahan Standar (Standard Error, SE)', 'Jangkauan (Range)'],
     correctAnswer: 2,
   },
   {
@@ -281,6 +281,102 @@ const questionsPart6 = [
     correctAnswer: 2,
   },
 ];
+const questionsPart7 = [
+  {
+    id: 'q46',
+    question: 'Uji hipotesis yang digunakan untuk membandingkan rata-rata dua populasi independen dengan varians yang tidak diketahui adalah...',
+    options: ['Uji Z', 'Uji t dua sampel independen', 'Uji t berpasangan', 'Uji Chi-Square'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q47',
+    question: 'Dalam Analisis Varians (ANOVA), hipotesis nol (H0) yang diuji adalah...',
+    options: ['Semua varians populasi sama', 'Semua rata-rata populasi berbeda', 'Setidaknya satu rata-rata populasi berbeda', 'Semua rata-rata populasi sama'],
+    correctAnswer: 3,
+  },
+  {
+    id: 'q48',
+    question: 'Uji Chi-Square (Kai-Kuadrat) paling sering digunakan untuk...',
+    options: ['Menguji hubungan antara dua variabel kategorikal', 'Membandingkan dua rata-rata', 'Memprediksi nilai variabel dependen', 'Mengukur kekuatan hubungan linear'],
+    correctAnswer: 0,
+  },
+  {
+    id: 'q49',
+    question: 'Jika p-value dari uji F dalam ANOVA lebih kecil dari α, maka kesimpulannya adalah...',
+    options: ['Menerima H0', 'Gagal menolak H0', 'Menolak H0, setidaknya ada satu rata-rata yang berbeda', 'Menolak H0, semua rata-rata berbeda'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q50',
+    question: 'Uji yang digunakan untuk membandingkan rata-rata sebelum dan sesudah perlakuan pada kelompok yang sama adalah...',
+    options: ['Uji t dua sampel independen', 'ANOVA', 'Uji t berpasangan (paired t-test)', 'Uji korelasi'],
+    correctAnswer: 2,
+  },
+];
+const questionsPart8 = [
+  {
+    id: 'q51',
+    question: 'Ukuran statistik yang menunjukkan arah dan kekuatan hubungan linear antara dua variabel kontinu adalah...',
+    options: ['Koefisien Determinasi (R²)', 'Koefisien Korelasi (r)', 'Slope (b1)', 'Intercept (b0)'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q52',
+    question: 'Nilai koefisien korelasi (r) berkisar antara...',
+    options: ['0 dan 1', '-1 dan 1', '0 dan tak hingga', '-tak hingga dan tak hingga'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q53',
+    question: 'Dalam model regresi linear sederhana Y = b0 + b1X, b1 merepresentasikan...',
+    options: ['Nilai Y ketika X = 0', 'Perubahan rata-rata pada Y untuk setiap kenaikan satu unit X', 'Kekuatan hubungan antara X dan Y', 'Proporsi variasi Y yang dijelaskan oleh X'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q54',
+    question: 'Koefisien Determinasi (R²) mengukur...',
+    options: ['Arah hubungan antara variabel', 'Kekuatan hubungan linear', 'Proporsi variabilitas variabel dependen yang dapat dijelaskan oleh variabel independen', 'Tingkat kesalahan prediksi'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q55',
+    question: 'Jika koefisien korelasi (r) mendekati -1, artinya terdapat...',
+    options: ['Hubungan positif yang kuat', 'Hubungan negatif yang kuat', 'Tidak ada hubungan', 'Hubungan non-linear'],
+    correctAnswer: 1,
+  },
+];
+const questionsPart9 = [
+  {
+    id: 'q56',
+    question: 'Uji statistik yang tidak memerlukan asumsi tentang distribusi populasi (misalnya, normalitas) disebut...',
+    options: ['Uji Parametrik', 'Uji Non-parametrik', 'Uji F', 'Uji Z'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q57',
+    question: 'Uji Mann-Whitney U adalah alternatif non-parametrik untuk...',
+    options: ['Uji t berpasangan', 'Uji t dua sampel independen', 'ANOVA satu arah', 'Uji korelasi Pearson'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q58',
+    question: 'Analisis yang digunakan untuk mempelajari data yang dikumpulkan dari waktu ke waktu secara berurutan adalah...',
+    options: ['Analisis Regresi', 'Analisis Deret Waktu (Time Series)', 'Analisis Survival', 'Analisis Klaster'],
+    correctAnswer: 1,
+  },
+  {
+    id: 'q59',
+    question: 'Dalam Pengendalian Kualitas Statistik (SQC), diagram yang digunakan untuk memantau variabilitas proses dari waktu ke waktu adalah...',
+    options: ['Diagram Pareto', 'Diagram Pencar', 'Diagram Kontrol (Control Chart)', 'Histogram'],
+    correctAnswer: 2,
+  },
+  {
+    id: 'q60',
+    question: 'Uji Kruskal-Wallis adalah alternatif non-parametrik untuk...',
+    options: ['Uji t dua sampel independen', 'Uji Chi-Square', 'ANOVA satu arah', 'Regresi Linear'],
+    correctAnswer: 2,
+  },
+];
 export const quizData: QuizTopic[] = [
   {
     id: 'topic-1',
@@ -317,5 +413,26 @@ export const quizData: QuizTopic[] = [
     title: 'Pengujian Hipotesis Satu Populasi',
     description: 'Langkah-langkah dan konsep dalam pengujian hipotesis.',
     questions: questionsPart6,
+  },
+  {
+    id: 'topic-7',
+    title: 'Statistika Inferensia Lanjutan',
+    description: 'Uji hipotesis untuk dua populasi, ANOVA, dan Chi-Square.',
+    questions: questionsPart7,
+    isAdvanced: true,
+  },
+  {
+    id: 'topic-8',
+    title: 'Analisis Regresi & Korelasi',
+    description: 'Mengukur dan memodelkan hubungan antar variabel.',
+    questions: questionsPart8,
+    isAdvanced: true,
+  },
+  {
+    id: 'topic-9',
+    title: 'Topik Khusus & Aplikasi',
+    description: 'Statistika non-parametrik, time series, dan quality control.',
+    questions: questionsPart9,
+    isAdvanced: true,
   },
 ];
