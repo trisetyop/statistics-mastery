@@ -53,7 +53,7 @@ export function QuizSession() {
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto">
       <div className="w-full space-y-4 mb-8">
-        <div className="flex justify-between text-sm font-medium text-muted-foreground">
+        <div className="flex justify-between text-lg font-medium text-muted-foreground">
           <span>Pertanyaan {currentQuestionIndex + 1} dari {questions.length}</span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -71,7 +71,7 @@ export function QuizSession() {
         >
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl leading-relaxed">{currentQuestion.question}</CardTitle>
+              <CardTitle className="text-3xl leading-relaxed">{currentQuestion.question}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
@@ -80,7 +80,7 @@ export function QuizSession() {
                     key={index}
                     variant="outline"
                     className={cn(
-                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative',
+                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative text-xl',
                       getOptionClass(index)
                     )}
                     onClick={() => handleAnswerClick(index)}
@@ -102,13 +102,13 @@ export function QuizSession() {
                 >
                   {isCorrect ? (
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg">Sulit</Button>
-                      <Button onClick={() => handleRatingClick('medium')} size="lg">Sedang</Button>
-                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg">Mudah</Button>
+                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg">Sulit</Button>
+                      <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg">Sedang</Button>
+                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg">Mudah</Button>
                     </div>
                   ) : (
-                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto">
-                      Ulangi
+                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto text-lg">
+                      Lanjutkan
                     </Button>
                   )}
                 </motion.div>

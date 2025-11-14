@@ -1,4 +1,4 @@
-import { Trophy } from 'lucide-react';
+import { Sprout } from 'lucide-react';
 import { useQuizSessionStore } from '@/stores/quizSessionStore';
 import { QuizDashboard } from '@/components/QuizDashboard';
 import { QuizSession } from '@/components/QuizSession';
@@ -25,8 +25,8 @@ export function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center gap-2">
-                <Trophy className="h-8 w-8 text-primary" />
-                <h1 className="text-2xl font-bold text-foreground">StatQuest</h1>
+                <Sprout className="h-8 w-8 text-primary" />
+                <h1 className="text-4xl font-bold text-foreground tracking-wider">StatQuest</h1>
               </div>
             </div>
           </div>
@@ -38,8 +38,8 @@ export function HomePage() {
             </div>
           </div>
         </main>
-        <footer className="py-6 text-center text-sm text-muted-foreground">
-          <p>Built with ❤️ at Cloudflare</p>
+        <footer className="py-6 text-center text-lg text-muted-foreground">
+          <p>Crafted with ❤️ in Pelican Town</p>
         </footer>
       </div>
     </>

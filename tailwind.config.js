@@ -6,7 +6,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'Inter',
+  				'VT323',
   				'-apple-system',
   				'BlinkMacSystemFont',
   				'Segoe UI',
@@ -15,7 +15,7 @@ export default {
   			],
   			display: [
   				'Cal Sans',
-  				'Inter',
+  				'VT323',
   				'system-ui',
   				'sans-serif'
   			],
@@ -84,8 +84,8 @@ export default {
   			'128': '32rem'
   		},
   		borderRadius: {
-  			'4xl': '2rem',
-  			'5xl': '2.5rem',
+  			'4xl': '1.5rem',
+  			'5xl': '2rem',
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
