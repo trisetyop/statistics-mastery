@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Question, UserProgress } from '@/types';
+import { useUserProgressStore } from './userProgressStore';
 type QuizStatus = 'inactive' | 'active' | 'completed';
 interface QuizSessionState {
   questions: Question[];
@@ -77,6 +78,13 @@ export const useQuizSessionStore = create<QuizSessionState>((set, get) => ({
   },
   endQuiz: () => {
     set({ status: 'completed', endTime: Date.now() });
+    // Achievement checks
+    const { score, questions } = get();
+    const { unlockAchievement } = useUserProgressStore.getState();
+    unlockAchievement('FIRST_QUIZ_COMPLETE');
+    if (questions.length > 0 && score === questions.length) {
+      unlockAchievement('PERFECT_SCORE');
+    }
   },
   reset: () => {
     set(initialState);

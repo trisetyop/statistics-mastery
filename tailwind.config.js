@@ -151,6 +151,7 @@ export default {
   			}
   		},
   		boxShadow: {
+        pixel: 'inset 0 0 0 1px hsl(var(--foreground) / 0.2), inset 0 2px 0 0 hsl(var(--foreground) / 0.8), inset 0 -2px 0 0 hsl(var(--foreground) / 0.3)',
   			soft: '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
   			glow: '0 0 20px -5px rgba(99, 102, 241, 0.4)',
   			'glow-lg': '0 0 40px -10px rgba(99, 102, 241, 0.3)',

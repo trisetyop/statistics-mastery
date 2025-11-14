@@ -21,7 +21,7 @@ export function HomePage() {
     <>
       <ThemeToggle className="fixed top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8" />
       <div className="min-h-screen bg-background text-foreground">
-        <header className="border-b">
+        <header className="border-b bg-card shadow-pixel">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center gap-2">
@@ -39,7 +39,7 @@ export function HomePage() {
           </div>
         </main>
         <footer className="py-6 text-center text-lg text-muted-foreground">
-          <p>Crafted with ❤️ in Pelican Town</p>
+          <p>Crafted with ��️ in Pelican Town</p>
         </footer>
       </div>
     </>
