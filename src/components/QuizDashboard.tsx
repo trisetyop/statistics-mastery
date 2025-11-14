@@ -21,12 +21,10 @@ import type { QuizTopic } from '@/types';
 import { cn } from '@/lib/utils';
 export function QuizDashboard() {
   const startQuiz = useQuizSessionStore((state) => state.startQuiz);
-  const { getTopicMastery, getTotalMasteredCount, progress, resetProgress } = useUserProgressStore(state => ({
-    getTopicMastery: state.getTopicMastery,
-    getTotalMasteredCount: state.getTotalMasteredCount,
-    progress: state.progress,
-    resetProgress: state.resetProgress,
-  }));
+  const getTopicMastery = useUserProgressStore((state) => state.getTopicMastery);
+  const getTotalMasteredCount = useUserProgressStore((state) => state.getTotalMasteredCount);
+  const progress = useUserProgressStore((state) => state.progress);
+  const resetProgress = useUserProgressStore((state) => state.resetProgress);
   const totalMasteredCount = getTotalMasteredCount();
   const UNLOCK_THRESHOLD = 75;
   const introTopics = quizData.filter(topic => !topic.isAdvanced);
