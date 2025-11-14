@@ -1,8 +1,19 @@
-import { BookCopy, CheckCircle, Award, Lock } from 'lucide-react';
+import { BookCopy, CheckCircle, Award, Lock, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { quizData } from '@/data/quizData';
 import { useUserProgressStore } from '@/stores/userProgressStore';
 import { useQuizSessionStore } from '@/stores/quizSessionStore';
@@ -10,10 +21,11 @@ import type { QuizTopic } from '@/types';
 import { cn } from '@/lib/utils';
 export function QuizDashboard() {
   const startQuiz = useQuizSessionStore((state) => state.startQuiz);
-  const { getTopicMastery, getTotalMasteredCount, progress } = useUserProgressStore(state => ({
+  const { getTopicMastery, getTotalMasteredCount, progress, resetProgress } = useUserProgressStore(state => ({
     getTopicMastery: state.getTopicMastery,
     getTotalMasteredCount: state.getTotalMasteredCount,
     progress: state.progress,
+    resetProgress: state.resetProgress,
   }));
   const totalMasteredCount = getTotalMasteredCount();
   const UNLOCK_THRESHOLD = 75;
@@ -28,8 +40,32 @@ export function QuizDashboard() {
   return (
     <div className="animate-fade-in space-y-10">
       <header className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">StatQuest Dashboard</h1>
-        <p className="text-lg text-muted-foreground">Selamat datang! Pilih topik untuk memulai kuis dan tingkatkan pemahaman statistika Anda.</p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">StatQuest Dashboard</h1>
+            <p className="text-lg text-muted-foreground">Selamat datang! Pilih topik untuk memulai kuis.</p>
+          </div>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" className="shrink-0">
+                <Trash2 className="mr-2 h-4 w-4" />
+                Reset Progress
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Apakah Anda yakin?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Tindakan ini akan menghapus semua progres penguasaan kartu Anda secara permanen. Data yang sudah dihapus tidak dapat dikembalikan.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Batal</AlertDialogCancel>
+                <AlertDialogAction onClick={resetProgress}>Ya, Hapus Progres</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </header>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col justify-between">

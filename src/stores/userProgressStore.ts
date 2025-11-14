@@ -6,6 +6,7 @@ interface UserProgressState {
   updateQuestionMastery: (questionId: string, rating: AnswerRating) => void;
   getTopicMastery: (questionIds: string[]) => number;
   getTotalMasteredCount: () => number;
+  resetProgress: () => void;
 }
 export const useUserProgressStore = create<UserProgressState>()(
   persist(
@@ -51,6 +52,9 @@ export const useUserProgressStore = create<UserProgressState>()(
       getTotalMasteredCount: () => {
         const state = get();
         return Object.values(state.progress).filter(level => level === 5).length;
+      },
+      resetProgress: () => {
+        set({ progress: {} });
       }
     }),
     {
