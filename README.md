@@ -1,6 +1,6 @@
 # StatQuest: Gamified Statistics Mastery
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/trisetyop/statistics-mastery)
 
 StatQuest is a visually stunning, gamified flashcard-style quiz application designed to help students master introductory statistics. The application leverages a simplified spaced repetition system (SRS), inspired by Anki, to optimize learning and retention. Users can select from various topics, engage in quiz sessions, and receive immediate feedback on their answers. Gamification elements such as points, streaks, and mastery levels are integrated to create an engaging and motivating learning experience. The entire user interface is designed with a focus on visual excellence, featuring a clean, modern aesthetic, smooth animations, and delightful micro-interactions, all built upon a high-performance, serverless architecture using Cloudflare Workers.
 
@@ -79,7 +79,7 @@ This project is configured for seamless deployment to **Cloudflare Pages**.
 
 You can deploy your own version of StatQuest with a single click:
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/trisetyop/statistics-mastery)
 
 ### Manual Deployment via Wrangler
 
