@@ -7,6 +7,7 @@ import { achievements } from '@/data/achievementsData';
 interface UserProgressState {
   progress: UserProgress;
   unlockedAchievements: Set<AchievementId>;
+  masteryStreak: number;
   updateQuestionMastery: (questionId: string, rating: AnswerRating) => void;
   getTopicMastery: (questionIds: string[]) => number;
   getTotalMasteredCount: () => number;
@@ -20,6 +21,7 @@ export const useUserProgressStore = create<UserProgressState>()(
     (set, get) => ({
       progress: {},
       unlockedAchievements: new Set(),
+      masteryStreak: 0,
       unlockAchievement: (id) => {
         const state = get();
         if (!state.unlockedAchievements.has(id)) {
@@ -35,24 +37,23 @@ export const useUserProgressStore = create<UserProgressState>()(
         }
       },
       updateQuestionMastery: (questionId, rating) => {
-        let newLevel: MasteryLevel = 0;
-        set((state) => {
-          const currentLevel = state.progress[questionId] || 0;
-          switch (rating) {
-            case 'again': newLevel = 1; break;
-            case 'hard': newLevel = Math.min(5, currentLevel + 1) as MasteryLevel; break;
-            case 'medium': newLevel = Math.min(5, currentLevel + 2) as MasteryLevel; break;
-            case 'easy': newLevel = 5; break;
-            default: newLevel = currentLevel;
-          }
-          return {
-            progress: { ...state.progress, [questionId]: newLevel },
-          };
-        });
+        const currentLevel = get().progress[questionId] || 0;
+        let newLevel: MasteryLevel;
+        switch (rating) {
+          case 'again': newLevel = 1; break;
+          case 'hard': newLevel = Math.min(5, currentLevel + 1) as MasteryLevel; break;
+          case 'medium': newLevel = Math.min(5, currentLevel + 2) as MasteryLevel; break;
+          case 'easy': newLevel = 5; break;
+          default: newLevel = currentLevel;
+        }
+        set((state) => ({
+          progress: { ...state.progress, [questionId]: newLevel },
+          masteryStreak: rating === 'easy' ? state.masteryStreak + 1 : 0,
+        }));
         // Post-update achievement checks
         const state = get();
         const masteredCount = Object.values(state.progress).filter(level => level === 5).length;
-        if (newLevel === 5) {
+        if (newLevel === 5 && currentLevel < 5) { // Only unlock on first time mastering
           state.unlockAchievement('FIRST_CARD_MASTERED');
         }
         if (masteredCount >= 10) {
@@ -72,7 +73,7 @@ export const useUserProgressStore = create<UserProgressState>()(
         const totalPossibleMastery = questionIds.length * 5;
         const currentMastery = questionIds.reduce((sum, qId) => sum + (state.progress[qId] || 0), 0);
         const masteryPercent = (currentMastery / totalPossibleMastery) * 100;
-        if (masteryPercent >= 75 && questionIds.every(id => introQuestionIds.includes(id))) {
+        if (masteryPercent >= 75 && introQuestionIds.length > 0 && questionIds.every(id => introQuestionIds.includes(id))) {
           state.unlockAchievement('ADVANCED_UNLOCKED');
         }
         return masteryPercent;
@@ -82,7 +83,7 @@ export const useUserProgressStore = create<UserProgressState>()(
         return Object.values(state.progress).filter(level => level === 5).length;
       },
       resetProgress: () => {
-        set({ progress: {}, unlockedAchievements: new Set() });
+        set({ progress: {}, unlockedAchievements: new Set(), masteryStreak: 0 });
       }
     }),
     {

@@ -39,7 +39,7 @@ export function HomePage() {
           </div>
         </main>
         <footer className="py-6 text-center text-lg text-muted-foreground">
-          <p>Crafted with ��️ in Pelican Town</p>
+          <p>Built with ❤️ at Cloudflare</p>
         </footer>
       </div>
     </>

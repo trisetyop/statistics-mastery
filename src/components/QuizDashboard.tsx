@@ -1,4 +1,4 @@
-import { BookCopy, CheckCircle, Award, Lock, Trash2 } from 'lucide-react';
+import { BookCopy, CheckCircle, Award, Lock, Trash2, Flame } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -28,6 +28,7 @@ export function QuizDashboard() {
   const progress = useUserProgressStore((state) => state.progress);
   const resetProgress = useUserProgressStore((state) => state.resetProgress);
   const unlockedAchievements = useUserProgressStore((state) => state.unlockedAchievements);
+  const masteryStreak = useUserProgressStore((state) => state.masteryStreak);
   const totalMasteredCount = getTotalMasteredCount();
   const UNLOCK_THRESHOLD = 75;
   const introTopics = quizData.filter(topic => !topic.isAdvanced);
@@ -70,7 +71,7 @@ export function QuizDashboard() {
             </AlertDialog>
           </div>
         </header>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           <Card className="flex flex-col justify-between shadow-pixel">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-2xl">
@@ -93,6 +94,18 @@ export function QuizDashboard() {
             <CardContent>
               <p className="text-5xl font-bold">{introMastery.toFixed(0)}%</p>
               <p className="text-muted-foreground text-lg">Target: {UNLOCK_THRESHOLD}% untuk membuka</p>
+            </CardContent>
+          </Card>
+          <Card className="flex flex-col justify-between shadow-pixel">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <Flame className="h-6 w-6 text-destructive" />
+                <span>Rentetan Jawaban</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-5xl font-bold">{masteryStreak}</p>
+              <p className="text-muted-foreground text-lg">Jawaban 'Mudah' berturut-turut</p>
             </CardContent>
           </Card>
         </div>

@@ -69,7 +69,7 @@ export function QuizSession() {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="w-full"
         >
-          <Card>
+          <Card className="shadow-pixel">
             <CardHeader>
               <CardTitle className="text-3xl leading-relaxed">{currentQuestion.question}</CardTitle>
             </CardHeader>
@@ -80,7 +80,7 @@ export function QuizSession() {
                     key={index}
                     variant="outline"
                     className={cn(
-                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative text-xl',
+                      'justify-start h-auto py-4 text-left whitespace-normal transition-all duration-300 relative text-xl shadow-pixel',
                       getOptionClass(index)
                     )}
                     onClick={() => handleAnswerClick(index)}
@@ -102,12 +102,12 @@ export function QuizSession() {
                 >
                   {isCorrect ? (
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg">Sulit</Button>
-                      <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg">Sedang</Button>
-                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg">Mudah</Button>
+                      <Button onClick={() => handleRatingClick('hard')} variant="outline" size="lg" className="text-lg shadow-pixel">Sulit</Button>
+                      <Button onClick={() => handleRatingClick('medium')} size="lg" className="text-lg shadow-pixel">Sedang</Button>
+                      <Button onClick={() => handleRatingClick('easy')} variant="secondary" size="lg" className="text-lg shadow-pixel">Mudah</Button>
                     </div>
                   ) : (
-                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto text-lg">
+                    <Button onClick={() => handleRatingClick('again')} size="lg" className="w-full sm:w-auto text-lg shadow-pixel">
                       Lanjutkan
                     </Button>
                   )}

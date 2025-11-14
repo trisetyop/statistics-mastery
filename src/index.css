@@ -68,9 +68,18 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     text-rendering: optimizeLegibility;
     background-color: hsl(var(--background));
-    background-image: 
+    background-image:
       linear-gradient(hsl(var(--secondary)) 1px, transparent 1px),
       linear-gradient(to right, hsl(var(--secondary)) 1px, transparent 1px);
     background-size: 20px 20px;
+    animation: pan-bg 60s linear infinite;
+  }
+  @keyframes pan-bg {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
   }
 }
